@@ -43,12 +43,37 @@ typedef struct __AVStreamHelpers_t
     struct SwrContext *swr_ctx;
 } AVStreamHelpers;
 
-void log_packet(const AVFormatContext *fmt_ctx, const AVPacket *pkt);
-AVFrame *alloc_picture(enum AVPixelFormat pix_fmt, int width, int height);
+void log_packet(const AVFormatContext *fmt_ctx,
+                const AVPacket *pkt);
+AVFrame *AVFramePictureInit(AVFrame **avframe_descr,
+                            enum AVPixelFormat pix_fmt,
+                            int width,
+                            int height);
 
-int write_frame(AVFormatContext *fmt_ctx, const AVRational *time_base, AVStream *st, AVPacket *pkt);
+int write_frame(AVFormatContext *fmt_ctx,
+                const AVRational *time_base,
+                AVStream *st,
+                AVPacket *pkt);
+
 /* Add an output stream. */
-void add_stream(AVStreamHelpers *ost, AVFormatContext *oc,
-                       AVCodec **codec,
-                       enum AVCodecID codec_id);
+void add_stream(AVStreamHelpers *ost,
+                AVFormatContext *oc,
+                AVCodec **codec,
+                enum AVCodecID codec_id);
+
+AVFrame *alloc_audio_frame(enum AVSampleFormat sample_fmt,
+                           uint64_t channel_layout,
+                           int sample_rate, int nb_samples);
+void open_audio(AVFormatContext *oc,
+                AVCodec *codec,
+                AVStreamHelpers *ost,
+                AVDictionary *opt_arg);
+
+int write_audio_frame(AVFormatContext *oc,
+                      AVStreamHelpers *ost);
+void open_video(AVFormatContext *oc,
+                AVCodec *codec,
+                AVStreamHelpers *ost,
+                AVDictionary *opt_arg);
+int write_video_frame(AVFormatContext *oc, AVStreamHelpers *ost);
 #endif

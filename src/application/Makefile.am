@@ -4,8 +4,8 @@ AM_CPPFLAGS=\
     -I $(top_srcdir)/src/application/include/  \
     -I $(top_srcdir)/src/wangyonglin/include/
 
-sbin_PROGRAMS=wangyonglind
-wangyonglind_SOURCES=\
+sbin_PROGRAMS=ffmpeg_camera_streamer
+ffmpeg_camera_streamer_SOURCES=\
     src/main.c  \
     src/httpd/httpd.c \
     src/USBCamera/AVOutputHelpers.c \
@@ -16,10 +16,10 @@ wangyonglind_SOURCES=\
 
     
 
-wangyonglind_LDADD=\
+ffmpeg_camera_streamer_LDADD=\
     $(top_builddir)/src/linuxos/liblinuxos.la\
     $(top_builddir)/src/wangyonglin/libwangyonglin.la
     $(FLIBS) 
 EXTRA_DIST	 =  $(top_srcdir)/src/application/include/*
 #需要引用的动态库文件
-LIBS += -g -O2 -Wall -pedantic   -lm -levent -lssl -lcrypto -lpthread -levent_openssl -lcurl -lavformat -lavcodec -lavutil -lavdevice -lswscale
+LIBS += -g -O2 -Wall -pedantic   -lm -levent -lssl -lcrypto -lpthread -levent_openssl -lcurl -lavformat -lavcodec -lavutil -lavdevice -lswscale -lswresample

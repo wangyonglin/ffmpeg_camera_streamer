@@ -88,7 +88,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-sbin_PROGRAMS = wangyonglind$(EXEEXT)
+sbin_PROGRAMS = ffmpeg_camera_streamer$(EXEEXT)
 subdir = src/application
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -102,14 +102,16 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(sbindir)"
 PROGRAMS = $(sbin_PROGRAMS)
 am__dirstamp = $(am__leading_dot)dirstamp
-am_wangyonglind_OBJECTS = src/main.$(OBJEXT) src/httpd/httpd.$(OBJEXT) \
+am_ffmpeg_camera_streamer_OBJECTS = src/main.$(OBJEXT) \
+	src/httpd/httpd.$(OBJEXT) \
 	src/USBCamera/AVOutputHelpers.$(OBJEXT) \
 	src/USBCamera/AVCameraHelpers.$(OBJEXT) \
 	src/USBCamera/AVEffectHelpers.$(OBJEXT) \
 	src/USBCamera/AVManagerHelpers.$(OBJEXT) \
 	src/USBCamera/AVStreamHelpers.$(OBJEXT)
-wangyonglind_OBJECTS = $(am_wangyonglind_OBJECTS)
-wangyonglind_DEPENDENCIES = $(top_builddir)/src/linuxos/liblinuxos.la \
+ffmpeg_camera_streamer_OBJECTS = $(am_ffmpeg_camera_streamer_OBJECTS)
+ffmpeg_camera_streamer_DEPENDENCIES =  \
+	$(top_builddir)/src/linuxos/liblinuxos.la \
 	$(top_builddir)/src/wangyonglin/libwangyonglin.la
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -156,8 +158,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(wangyonglind_SOURCES)
-DIST_SOURCES = $(wangyonglind_SOURCES)
+SOURCES = $(ffmpeg_camera_streamer_SOURCES)
+DIST_SOURCES = $(ffmpeg_camera_streamer_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -221,7 +223,7 @@ LIBOBJS = @LIBOBJS@
 #需要引用的动态库文件
 LIBS = @LIBS@ -g -O2 -Wall -pedantic -lm -levent -lssl -lcrypto \
 	-lpthread -levent_openssl -lcurl -lavformat -lavcodec -lavutil \
-	-lavdevice -lswscale
+	-lavdevice -lswscale -lswresample
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
@@ -312,7 +314,7 @@ AM_CPPFLAGS = \
     -I $(top_srcdir)/src/application/include/  \
     -I $(top_srcdir)/src/wangyonglin/include/
 
-wangyonglind_SOURCES = \
+ffmpeg_camera_streamer_SOURCES = \
     src/main.c  \
     src/httpd/httpd.c \
     src/USBCamera/AVOutputHelpers.c \
@@ -321,7 +323,7 @@ wangyonglind_SOURCES = \
     src/USBCamera/AVManagerHelpers.c \
     src/USBCamera/AVStreamHelpers.c
 
-wangyonglind_LDADD = \
+ffmpeg_camera_streamer_LDADD = \
     $(top_builddir)/src/linuxos/liblinuxos.la\
     $(top_builddir)/src/wangyonglin/libwangyonglin.la
 
@@ -445,9 +447,9 @@ src/USBCamera/AVStreamHelpers.$(OBJEXT):  \
 	src/USBCamera/$(am__dirstamp) \
 	src/USBCamera/$(DEPDIR)/$(am__dirstamp)
 
-wangyonglind$(EXEEXT): $(wangyonglind_OBJECTS) $(wangyonglind_DEPENDENCIES) $(EXTRA_wangyonglind_DEPENDENCIES) 
-	@rm -f wangyonglind$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(wangyonglind_OBJECTS) $(wangyonglind_LDADD) $(LIBS)
+ffmpeg_camera_streamer$(EXEEXT): $(ffmpeg_camera_streamer_OBJECTS) $(ffmpeg_camera_streamer_DEPENDENCIES) $(EXTRA_ffmpeg_camera_streamer_DEPENDENCIES) 
+	@rm -f ffmpeg_camera_streamer$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(ffmpeg_camera_streamer_OBJECTS) $(ffmpeg_camera_streamer_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
