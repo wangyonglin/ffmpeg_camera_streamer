@@ -129,7 +129,7 @@ am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libwangyonglin_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
-am_libwangyonglin_la_OBJECTS = src/Helpers/Allocate.lo \
+am_libwangyonglin_la_OBJECTS = src/WangYonglin/Skeletons.lo \
 	src/Helpers/String.lo src/Helpers/EventTrigger.lo \
 	src/Helpers/KVTailq.lo src/Helpers/Unix_timestamp_converter.lo \
 	src/OpenSSL/base64.lo src/SnowFlake/IdGenerator.lo \
@@ -162,7 +162,6 @@ am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = src/HTTPSClient/$(DEPDIR)/HTTPSClient.Plo \
 	src/HTTPSClient/$(DEPDIR)/hostcheck.Plo \
 	src/HTTPSClient/$(DEPDIR)/openssl_hostname_validation.Plo \
-	src/Helpers/$(DEPDIR)/Allocate.Plo \
 	src/Helpers/$(DEPDIR)/EventTrigger.Plo \
 	src/Helpers/$(DEPDIR)/KVTailq.Plo \
 	src/Helpers/$(DEPDIR)/String.Plo \
@@ -173,6 +172,7 @@ am__depfiles_remade = src/HTTPSClient/$(DEPDIR)/HTTPSClient.Plo \
 	src/SnowFlake/$(DEPDIR)/SnowFlake.Plo \
 	src/SnowFlake/$(DEPDIR)/SnowWorkerM1.Plo \
 	src/SnowFlake/$(DEPDIR)/SnowWorkerM2.Plo \
+	src/WangYonglin/$(DEPDIR)/Skeletons.Plo \
 	src/cJSON/$(DEPDIR)/cJSON.Plo \
 	src/cJSON/$(DEPDIR)/cJSON_Utils.Plo
 am__mv = mv -f
@@ -346,7 +346,7 @@ AM_LDFLAGS = -lpthread
 AM_CPPFLAGS = -I $(top_srcdir)/src/wangyonglin/include/
 lib_LTLIBRARIES = libwangyonglin.la
 libwangyonglin_la_SOURCES = \
-        src/Helpers/Allocate.c \
+        src/WangYonglin/Skeletons.c \
         src/Helpers/String.c \
         src/Helpers/EventTrigger.c \
         src/Helpers/KVTailq.c \
@@ -431,14 +431,20 @@ clean-libLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/WangYonglin/$(am__dirstamp):
+	@$(MKDIR_P) src/WangYonglin
+	@: > src/WangYonglin/$(am__dirstamp)
+src/WangYonglin/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/WangYonglin/$(DEPDIR)
+	@: > src/WangYonglin/$(DEPDIR)/$(am__dirstamp)
+src/WangYonglin/Skeletons.lo: src/WangYonglin/$(am__dirstamp) \
+	src/WangYonglin/$(DEPDIR)/$(am__dirstamp)
 src/Helpers/$(am__dirstamp):
 	@$(MKDIR_P) src/Helpers
 	@: > src/Helpers/$(am__dirstamp)
 src/Helpers/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/Helpers/$(DEPDIR)
 	@: > src/Helpers/$(DEPDIR)/$(am__dirstamp)
-src/Helpers/Allocate.lo: src/Helpers/$(am__dirstamp) \
-	src/Helpers/$(DEPDIR)/$(am__dirstamp)
 src/Helpers/String.lo: src/Helpers/$(am__dirstamp) \
 	src/Helpers/$(DEPDIR)/$(am__dirstamp)
 src/Helpers/EventTrigger.lo: src/Helpers/$(am__dirstamp) \
@@ -508,6 +514,8 @@ mostlyclean-compile:
 	-rm -f src/OpenSSL/*.lo
 	-rm -f src/SnowFlake/*.$(OBJEXT)
 	-rm -f src/SnowFlake/*.lo
+	-rm -f src/WangYonglin/*.$(OBJEXT)
+	-rm -f src/WangYonglin/*.lo
 	-rm -f src/cJSON/*.$(OBJEXT)
 	-rm -f src/cJSON/*.lo
 
@@ -517,7 +525,6 @@ distclean-compile:
 include src/HTTPSClient/$(DEPDIR)/HTTPSClient.Plo # am--include-marker
 include src/HTTPSClient/$(DEPDIR)/hostcheck.Plo # am--include-marker
 include src/HTTPSClient/$(DEPDIR)/openssl_hostname_validation.Plo # am--include-marker
-include src/Helpers/$(DEPDIR)/Allocate.Plo # am--include-marker
 include src/Helpers/$(DEPDIR)/EventTrigger.Plo # am--include-marker
 include src/Helpers/$(DEPDIR)/KVTailq.Plo # am--include-marker
 include src/Helpers/$(DEPDIR)/String.Plo # am--include-marker
@@ -528,6 +535,7 @@ include src/SnowFlake/$(DEPDIR)/IdGenerator.Plo # am--include-marker
 include src/SnowFlake/$(DEPDIR)/SnowFlake.Plo # am--include-marker
 include src/SnowFlake/$(DEPDIR)/SnowWorkerM1.Plo # am--include-marker
 include src/SnowFlake/$(DEPDIR)/SnowWorkerM2.Plo # am--include-marker
+include src/WangYonglin/$(DEPDIR)/Skeletons.Plo # am--include-marker
 include src/cJSON/$(DEPDIR)/cJSON.Plo # am--include-marker
 include src/cJSON/$(DEPDIR)/cJSON_Utils.Plo # am--include-marker
 
@@ -570,6 +578,7 @@ clean-libtool:
 	-rm -rf src/Helpers/.libs src/Helpers/_libs
 	-rm -rf src/OpenSSL/.libs src/OpenSSL/_libs
 	-rm -rf src/SnowFlake/.libs src/SnowFlake/_libs
+	-rm -rf src/WangYonglin/.libs src/WangYonglin/_libs
 	-rm -rf src/cJSON/.libs src/cJSON/_libs
 
 ID: $(am__tagged_files)
@@ -698,6 +707,8 @@ distclean-generic:
 	-rm -f src/OpenSSL/$(am__dirstamp)
 	-rm -f src/SnowFlake/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/SnowFlake/$(am__dirstamp)
+	-rm -f src/WangYonglin/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/WangYonglin/$(am__dirstamp)
 	-rm -f src/cJSON/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/cJSON/$(am__dirstamp)
 
@@ -713,7 +724,6 @@ distclean: distclean-am
 		-rm -f src/HTTPSClient/$(DEPDIR)/HTTPSClient.Plo
 	-rm -f src/HTTPSClient/$(DEPDIR)/hostcheck.Plo
 	-rm -f src/HTTPSClient/$(DEPDIR)/openssl_hostname_validation.Plo
-	-rm -f src/Helpers/$(DEPDIR)/Allocate.Plo
 	-rm -f src/Helpers/$(DEPDIR)/EventTrigger.Plo
 	-rm -f src/Helpers/$(DEPDIR)/KVTailq.Plo
 	-rm -f src/Helpers/$(DEPDIR)/String.Plo
@@ -724,6 +734,7 @@ distclean: distclean-am
 	-rm -f src/SnowFlake/$(DEPDIR)/SnowFlake.Plo
 	-rm -f src/SnowFlake/$(DEPDIR)/SnowWorkerM1.Plo
 	-rm -f src/SnowFlake/$(DEPDIR)/SnowWorkerM2.Plo
+	-rm -f src/WangYonglin/$(DEPDIR)/Skeletons.Plo
 	-rm -f src/cJSON/$(DEPDIR)/cJSON.Plo
 	-rm -f src/cJSON/$(DEPDIR)/cJSON_Utils.Plo
 	-rm -f Makefile
@@ -774,7 +785,6 @@ maintainer-clean: maintainer-clean-am
 		-rm -f src/HTTPSClient/$(DEPDIR)/HTTPSClient.Plo
 	-rm -f src/HTTPSClient/$(DEPDIR)/hostcheck.Plo
 	-rm -f src/HTTPSClient/$(DEPDIR)/openssl_hostname_validation.Plo
-	-rm -f src/Helpers/$(DEPDIR)/Allocate.Plo
 	-rm -f src/Helpers/$(DEPDIR)/EventTrigger.Plo
 	-rm -f src/Helpers/$(DEPDIR)/KVTailq.Plo
 	-rm -f src/Helpers/$(DEPDIR)/String.Plo
@@ -785,6 +795,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/SnowFlake/$(DEPDIR)/SnowFlake.Plo
 	-rm -f src/SnowFlake/$(DEPDIR)/SnowWorkerM1.Plo
 	-rm -f src/SnowFlake/$(DEPDIR)/SnowWorkerM2.Plo
+	-rm -f src/WangYonglin/$(DEPDIR)/Skeletons.Plo
 	-rm -f src/cJSON/$(DEPDIR)/cJSON.Plo
 	-rm -f src/cJSON/$(DEPDIR)/cJSON_Utils.Plo
 	-rm -f Makefile

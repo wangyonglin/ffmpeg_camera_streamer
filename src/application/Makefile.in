@@ -103,12 +103,10 @@ am__installdirs = "$(DESTDIR)$(sbindir)"
 PROGRAMS = $(sbin_PROGRAMS)
 am__dirstamp = $(am__leading_dot)dirstamp
 am_ffmpeg_camera_streamer_OBJECTS = src/main.$(OBJEXT) \
-	src/httpd/httpd.$(OBJEXT) \
-	src/USBCamera/AVOutputHelpers.$(OBJEXT) \
-	src/USBCamera/AVCameraHelpers.$(OBJEXT) \
-	src/USBCamera/AVEffectHelpers.$(OBJEXT) \
-	src/USBCamera/AVManagerHelpers.$(OBJEXT) \
-	src/USBCamera/AVStreamHelpers.$(OBJEXT)
+	src/httpd/httpd.$(OBJEXT) src/FFMPEG/AVRTMPSkeletons.$(OBJEXT) \
+	src/FFMPEG/AVCameraSkeletons.$(OBJEXT) \
+	src/FFMPEG/AVContentSkeletons.$(OBJEXT) \
+	src/FFMPEG/AVFilterSkeletons.$(OBJEXT)
 ffmpeg_camera_streamer_OBJECTS = $(am_ffmpeg_camera_streamer_OBJECTS)
 ffmpeg_camera_streamer_DEPENDENCIES =  \
 	$(top_builddir)/src/linuxos/liblinuxos.la \
@@ -133,11 +131,10 @@ DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = src/$(DEPDIR)/main.Po \
-	src/USBCamera/$(DEPDIR)/AVCameraHelpers.Po \
-	src/USBCamera/$(DEPDIR)/AVEffectHelpers.Po \
-	src/USBCamera/$(DEPDIR)/AVManagerHelpers.Po \
-	src/USBCamera/$(DEPDIR)/AVOutputHelpers.Po \
-	src/USBCamera/$(DEPDIR)/AVStreamHelpers.Po \
+	src/FFMPEG/$(DEPDIR)/AVCameraSkeletons.Po \
+	src/FFMPEG/$(DEPDIR)/AVContentSkeletons.Po \
+	src/FFMPEG/$(DEPDIR)/AVFilterSkeletons.Po \
+	src/FFMPEG/$(DEPDIR)/AVRTMPSkeletons.Po \
 	src/httpd/$(DEPDIR)/httpd.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
@@ -223,7 +220,7 @@ LIBOBJS = @LIBOBJS@
 #需要引用的动态库文件
 LIBS = @LIBS@ -g -O2 -Wall -pedantic -lm -levent -lssl -lcrypto \
 	-lpthread -levent_openssl -lcurl -lavformat -lavcodec -lavutil \
-	-lavdevice -lswscale -lswresample
+	-lavdevice -lswscale -lswresample -lavfilter
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
@@ -317,11 +314,10 @@ AM_CPPFLAGS = \
 ffmpeg_camera_streamer_SOURCES = \
     src/main.c  \
     src/httpd/httpd.c \
-    src/USBCamera/AVOutputHelpers.c \
-    src/USBCamera/AVCameraHelpers.c \
-    src/USBCamera/AVEffectHelpers.c \
-    src/USBCamera/AVManagerHelpers.c \
-    src/USBCamera/AVStreamHelpers.c
+    src/FFMPEG/AVRTMPSkeletons.c \
+    src/FFMPEG/AVCameraSkeletons.c \
+    src/FFMPEG/AVContentSkeletons.c \
+    src/FFMPEG/AVFilterSkeletons.c
 
 ffmpeg_camera_streamer_LDADD = \
     $(top_builddir)/src/linuxos/liblinuxos.la\
@@ -425,27 +421,20 @@ src/httpd/$(DEPDIR)/$(am__dirstamp):
 	@: > src/httpd/$(DEPDIR)/$(am__dirstamp)
 src/httpd/httpd.$(OBJEXT): src/httpd/$(am__dirstamp) \
 	src/httpd/$(DEPDIR)/$(am__dirstamp)
-src/USBCamera/$(am__dirstamp):
-	@$(MKDIR_P) src/USBCamera
-	@: > src/USBCamera/$(am__dirstamp)
-src/USBCamera/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) src/USBCamera/$(DEPDIR)
-	@: > src/USBCamera/$(DEPDIR)/$(am__dirstamp)
-src/USBCamera/AVOutputHelpers.$(OBJEXT):  \
-	src/USBCamera/$(am__dirstamp) \
-	src/USBCamera/$(DEPDIR)/$(am__dirstamp)
-src/USBCamera/AVCameraHelpers.$(OBJEXT):  \
-	src/USBCamera/$(am__dirstamp) \
-	src/USBCamera/$(DEPDIR)/$(am__dirstamp)
-src/USBCamera/AVEffectHelpers.$(OBJEXT):  \
-	src/USBCamera/$(am__dirstamp) \
-	src/USBCamera/$(DEPDIR)/$(am__dirstamp)
-src/USBCamera/AVManagerHelpers.$(OBJEXT):  \
-	src/USBCamera/$(am__dirstamp) \
-	src/USBCamera/$(DEPDIR)/$(am__dirstamp)
-src/USBCamera/AVStreamHelpers.$(OBJEXT):  \
-	src/USBCamera/$(am__dirstamp) \
-	src/USBCamera/$(DEPDIR)/$(am__dirstamp)
+src/FFMPEG/$(am__dirstamp):
+	@$(MKDIR_P) src/FFMPEG
+	@: > src/FFMPEG/$(am__dirstamp)
+src/FFMPEG/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/FFMPEG/$(DEPDIR)
+	@: > src/FFMPEG/$(DEPDIR)/$(am__dirstamp)
+src/FFMPEG/AVRTMPSkeletons.$(OBJEXT): src/FFMPEG/$(am__dirstamp) \
+	src/FFMPEG/$(DEPDIR)/$(am__dirstamp)
+src/FFMPEG/AVCameraSkeletons.$(OBJEXT): src/FFMPEG/$(am__dirstamp) \
+	src/FFMPEG/$(DEPDIR)/$(am__dirstamp)
+src/FFMPEG/AVContentSkeletons.$(OBJEXT): src/FFMPEG/$(am__dirstamp) \
+	src/FFMPEG/$(DEPDIR)/$(am__dirstamp)
+src/FFMPEG/AVFilterSkeletons.$(OBJEXT): src/FFMPEG/$(am__dirstamp) \
+	src/FFMPEG/$(DEPDIR)/$(am__dirstamp)
 
 ffmpeg_camera_streamer$(EXEEXT): $(ffmpeg_camera_streamer_OBJECTS) $(ffmpeg_camera_streamer_DEPENDENCIES) $(EXTRA_ffmpeg_camera_streamer_DEPENDENCIES) 
 	@rm -f ffmpeg_camera_streamer$(EXEEXT)
@@ -454,18 +443,17 @@ ffmpeg_camera_streamer$(EXEEXT): $(ffmpeg_camera_streamer_OBJECTS) $(ffmpeg_came
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 	-rm -f src/*.$(OBJEXT)
-	-rm -f src/USBCamera/*.$(OBJEXT)
+	-rm -f src/FFMPEG/*.$(OBJEXT)
 	-rm -f src/httpd/*.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/main.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@src/USBCamera/$(DEPDIR)/AVCameraHelpers.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@src/USBCamera/$(DEPDIR)/AVEffectHelpers.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@src/USBCamera/$(DEPDIR)/AVManagerHelpers.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@src/USBCamera/$(DEPDIR)/AVOutputHelpers.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@src/USBCamera/$(DEPDIR)/AVStreamHelpers.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/FFMPEG/$(DEPDIR)/AVCameraSkeletons.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/FFMPEG/$(DEPDIR)/AVContentSkeletons.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/FFMPEG/$(DEPDIR)/AVFilterSkeletons.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/FFMPEG/$(DEPDIR)/AVRTMPSkeletons.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/httpd/$(DEPDIR)/httpd.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
@@ -624,8 +612,8 @@ distclean-generic:
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
 	-rm -f src/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/$(am__dirstamp)
-	-rm -f src/USBCamera/$(DEPDIR)/$(am__dirstamp)
-	-rm -f src/USBCamera/$(am__dirstamp)
+	-rm -f src/FFMPEG/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/FFMPEG/$(am__dirstamp)
 	-rm -f src/httpd/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/httpd/$(am__dirstamp)
 
@@ -639,11 +627,10 @@ clean-am: clean-generic clean-libtool clean-sbinPROGRAMS \
 
 distclean: distclean-am
 		-rm -f src/$(DEPDIR)/main.Po
-	-rm -f src/USBCamera/$(DEPDIR)/AVCameraHelpers.Po
-	-rm -f src/USBCamera/$(DEPDIR)/AVEffectHelpers.Po
-	-rm -f src/USBCamera/$(DEPDIR)/AVManagerHelpers.Po
-	-rm -f src/USBCamera/$(DEPDIR)/AVOutputHelpers.Po
-	-rm -f src/USBCamera/$(DEPDIR)/AVStreamHelpers.Po
+	-rm -f src/FFMPEG/$(DEPDIR)/AVCameraSkeletons.Po
+	-rm -f src/FFMPEG/$(DEPDIR)/AVContentSkeletons.Po
+	-rm -f src/FFMPEG/$(DEPDIR)/AVFilterSkeletons.Po
+	-rm -f src/FFMPEG/$(DEPDIR)/AVRTMPSkeletons.Po
 	-rm -f src/httpd/$(DEPDIR)/httpd.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -691,11 +678,10 @@ installcheck-am:
 
 maintainer-clean: maintainer-clean-am
 		-rm -f src/$(DEPDIR)/main.Po
-	-rm -f src/USBCamera/$(DEPDIR)/AVCameraHelpers.Po
-	-rm -f src/USBCamera/$(DEPDIR)/AVEffectHelpers.Po
-	-rm -f src/USBCamera/$(DEPDIR)/AVManagerHelpers.Po
-	-rm -f src/USBCamera/$(DEPDIR)/AVOutputHelpers.Po
-	-rm -f src/USBCamera/$(DEPDIR)/AVStreamHelpers.Po
+	-rm -f src/FFMPEG/$(DEPDIR)/AVCameraSkeletons.Po
+	-rm -f src/FFMPEG/$(DEPDIR)/AVContentSkeletons.Po
+	-rm -f src/FFMPEG/$(DEPDIR)/AVFilterSkeletons.Po
+	-rm -f src/FFMPEG/$(DEPDIR)/AVRTMPSkeletons.Po
 	-rm -f src/httpd/$(DEPDIR)/httpd.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic

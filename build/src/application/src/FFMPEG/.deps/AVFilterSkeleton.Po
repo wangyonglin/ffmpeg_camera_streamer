@@ -1,0 +1,5 @@
+src/FFMPEG/AVFilterSkeleton.o: \
+ ../../../src/application/src/FFMPEG/AVFilterSkeleton.c \
+ /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:

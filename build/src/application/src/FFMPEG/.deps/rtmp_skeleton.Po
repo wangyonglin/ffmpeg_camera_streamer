@@ -1,0 +1,5 @@
+src/FFMPEG/rtmp_skeleton.o: \
+ ../../../src/application/src/FFMPEG/rtmp_skeleton.c \
+ /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:

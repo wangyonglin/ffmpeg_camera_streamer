@@ -1,7 +1,10 @@
-src/Helpers/String.lo: ../../../src/wangyonglin/src/Helpers/String.c \
+src/USBCamera/rtmp_skeleton.o: \
+ ../../../src/application/src/USBCamera/rtmp_skeleton.c \
  /usr/include/stdc-predef.h \
+ ../../../src/application/include/USBCamera/AVManagerHelpers.h \
+ ../../../src/application/include/USBCamera/AVCameraHelpers.h \
  ../../../src/wangyonglin/include/Helpers/String.h \
- ../../../src/wangyonglin/include/WangYonglin/Skeletons.h \
+ ../../../src/wangyonglin/include/WangYonglin/Headers.h \
  /usr/include/x86_64-linux-gnu/sys/queue.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
@@ -136,14 +139,72 @@ src/Helpers/String.lo: ../../../src/wangyonglin/src/Helpers/String.c \
  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
  /usr/include/openssl/bioerr.h /usr/include/openssl/lhash.h \
  /usr/include/openssl/conferr.h \
+ ../../../src/wangyonglin/include/Helpers/Allocate.h \
  ../../../src/wangyonglin/include/Helpers/Unix_timestamp_converter.h \
- /usr/lib/gcc/x86_64-linux-gnu/9/include/stdbool.h
+ /usr/lib/gcc/x86_64-linux-gnu/9/include/stdbool.h \
+ /usr/include/x86_64-linux-gnu/libavformat/avformat.h \
+ /usr/include/x86_64-linux-gnu/libavcodec/avcodec.h \
+ /usr/include/x86_64-linux-gnu/libavutil/samplefmt.h \
+ /usr/include/x86_64-linux-gnu/libavutil/avutil.h \
+ /usr/include/x86_64-linux-gnu/libavutil/common.h /usr/include/math.h \
+ /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+ /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+ /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+ /usr/include/x86_64-linux-gnu/bits/mathinline.h \
+ /usr/include/x86_64-linux-gnu/libavutil/attributes.h \
+ /usr/include/x86_64-linux-gnu/libavutil/macros.h \
+ /usr/include/x86_64-linux-gnu/libavutil/version.h \
+ /usr/include/x86_64-linux-gnu/libavutil/avconfig.h \
+ /usr/include/x86_64-linux-gnu/libavutil/mem.h \
+ /usr/include/x86_64-linux-gnu/libavutil/error.h \
+ /usr/include/x86_64-linux-gnu/libavutil/rational.h \
+ /usr/include/x86_64-linux-gnu/libavutil/mathematics.h \
+ /usr/include/x86_64-linux-gnu/libavutil/intfloat.h \
+ /usr/include/x86_64-linux-gnu/libavutil/log.h \
+ /usr/include/x86_64-linux-gnu/libavutil/pixfmt.h \
+ /usr/include/x86_64-linux-gnu/libavutil/attributes.h \
+ /usr/include/x86_64-linux-gnu/libavutil/avutil.h \
+ /usr/include/x86_64-linux-gnu/libavutil/buffer.h \
+ /usr/include/x86_64-linux-gnu/libavutil/cpu.h \
+ /usr/include/x86_64-linux-gnu/libavutil/channel_layout.h \
+ /usr/include/x86_64-linux-gnu/libavutil/dict.h \
+ /usr/include/x86_64-linux-gnu/libavutil/frame.h \
+ /usr/include/x86_64-linux-gnu/libavutil/buffer.h \
+ /usr/include/x86_64-linux-gnu/libavutil/dict.h \
+ /usr/include/x86_64-linux-gnu/libavutil/samplefmt.h \
+ /usr/include/x86_64-linux-gnu/libavutil/hwcontext.h \
+ /usr/include/x86_64-linux-gnu/libavutil/frame.h \
+ /usr/include/x86_64-linux-gnu/libavutil/log.h \
+ /usr/include/x86_64-linux-gnu/libavutil/pixfmt.h \
+ /usr/include/x86_64-linux-gnu/libavutil/rational.h \
+ /usr/include/x86_64-linux-gnu/libavcodec/version.h \
+ /usr/include/x86_64-linux-gnu/libavutil/version.h \
+ /usr/include/x86_64-linux-gnu/libavformat/avio.h \
+ /usr/include/x86_64-linux-gnu/libavutil/common.h \
+ /usr/include/x86_64-linux-gnu/libavformat/version.h \
+ /usr/include/x86_64-linux-gnu/libavdevice/avdevice.h \
+ /usr/include/x86_64-linux-gnu/libavdevice/version.h \
+ /usr/include/x86_64-linux-gnu/libavutil/opt.h \
+ /usr/include/x86_64-linux-gnu/libswscale/swscale.h \
+ /usr/include/x86_64-linux-gnu/libswscale/version.h \
+ /usr/include/x86_64-linux-gnu/libavutil/imgutils.h \
+ /usr/include/x86_64-linux-gnu/libavutil/pixdesc.h \
+ /usr/include/x86_64-linux-gnu/libavutil/timestamp.h \
+ ../../../src/application/include/USBCamera/AVOutputHelpers.h
 
 /usr/include/stdc-predef.h:
 
+../../../src/application/include/USBCamera/AVManagerHelpers.h:
+
+../../../src/application/include/USBCamera/AVCameraHelpers.h:
+
 ../../../src/wangyonglin/include/Helpers/String.h:
 
-../../../src/wangyonglin/include/WangYonglin/Skeletons.h:
+../../../src/wangyonglin/include/WangYonglin/Headers.h:
 
 /usr/include/x86_64-linux-gnu/sys/queue.h:
 
@@ -467,6 +528,116 @@ src/Helpers/String.lo: ../../../src/wangyonglin/src/Helpers/String.c \
 
 /usr/include/openssl/conferr.h:
 
+../../../src/wangyonglin/include/Helpers/Allocate.h:
+
 ../../../src/wangyonglin/include/Helpers/Unix_timestamp_converter.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/stdbool.h:
+
+/usr/include/x86_64-linux-gnu/libavformat/avformat.h:
+
+/usr/include/x86_64-linux-gnu/libavcodec/avcodec.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/samplefmt.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/avutil.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/common.h:
+
+/usr/include/math.h:
+
+/usr/include/x86_64-linux-gnu/bits/math-vector.h:
+
+/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
+
+/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
+
+/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
+
+/usr/include/x86_64-linux-gnu/bits/fp-fast.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathinline.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/attributes.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/macros.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/version.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/avconfig.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/mem.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/error.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/rational.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/mathematics.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/intfloat.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/log.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/pixfmt.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/attributes.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/avutil.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/buffer.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/cpu.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/channel_layout.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/dict.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/frame.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/buffer.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/dict.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/samplefmt.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/hwcontext.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/frame.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/log.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/pixfmt.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/rational.h:
+
+/usr/include/x86_64-linux-gnu/libavcodec/version.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/version.h:
+
+/usr/include/x86_64-linux-gnu/libavformat/avio.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/common.h:
+
+/usr/include/x86_64-linux-gnu/libavformat/version.h:
+
+/usr/include/x86_64-linux-gnu/libavdevice/avdevice.h:
+
+/usr/include/x86_64-linux-gnu/libavdevice/version.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/opt.h:
+
+/usr/include/x86_64-linux-gnu/libswscale/swscale.h:
+
+/usr/include/x86_64-linux-gnu/libswscale/version.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/imgutils.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/pixdesc.h:
+
+/usr/include/x86_64-linux-gnu/libavutil/timestamp.h:
+
+../../../src/application/include/USBCamera/AVOutputHelpers.h:

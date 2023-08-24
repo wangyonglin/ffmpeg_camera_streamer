@@ -2,7 +2,7 @@ src/Helpers/KVTailq.lo: ../../../src/wangyonglin/src/Helpers/KVTailq.c \
  /usr/include/stdc-predef.h \
  ../../../src/wangyonglin/include/Helpers/KVTailq.h \
  ../../../src/wangyonglin/include/Helpers/String.h \
- ../../../src/wangyonglin/include/WangYonglin/Headers.h \
+ ../../../src/wangyonglin/include/WangYonglin/Skeletons.h \
  /usr/include/x86_64-linux-gnu/sys/queue.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
@@ -137,7 +137,6 @@ src/Helpers/KVTailq.lo: ../../../src/wangyonglin/src/Helpers/KVTailq.c \
  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
  /usr/include/openssl/bioerr.h /usr/include/openssl/lhash.h \
  /usr/include/openssl/conferr.h \
- ../../../src/wangyonglin/include/Helpers/Allocate.h \
  ../../../src/wangyonglin/include/Helpers/Unix_timestamp_converter.h \
  /usr/lib/gcc/x86_64-linux-gnu/9/include/stdbool.h
 
@@ -147,7 +146,7 @@ src/Helpers/KVTailq.lo: ../../../src/wangyonglin/src/Helpers/KVTailq.c \
 
 ../../../src/wangyonglin/include/Helpers/String.h:
 
-../../../src/wangyonglin/include/WangYonglin/Headers.h:
+../../../src/wangyonglin/include/WangYonglin/Skeletons.h:
 
 /usr/include/x86_64-linux-gnu/sys/queue.h:
 
@@ -470,8 +469,6 @@ src/Helpers/KVTailq.lo: ../../../src/wangyonglin/src/Helpers/KVTailq.c \
 /usr/include/openssl/lhash.h:
 
 /usr/include/openssl/conferr.h:
-
-../../../src/wangyonglin/include/Helpers/Allocate.h:
 
 ../../../src/wangyonglin/include/Helpers/Unix_timestamp_converter.h:
 

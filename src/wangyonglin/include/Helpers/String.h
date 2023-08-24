@@ -1,7 +1,7 @@
 #if !defined(INCLUDE_HELPERS_STRING_H)
 #define INCLUDE_HELPERS_STRING_H
-#include <WangYonglin/Headers.h>
-#include <Helpers/Allocate.h>
+#include <WangYonglin/Skeletons.h>
+
 /**
  * initialCapacity
  */

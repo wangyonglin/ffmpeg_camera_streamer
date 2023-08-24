@@ -8,11 +8,11 @@ sbin_PROGRAMS=ffmpeg_camera_streamer
 ffmpeg_camera_streamer_SOURCES=\
     src/main.c  \
     src/httpd/httpd.c \
-    src/USBCamera/AVOutputHelpers.c \
-    src/USBCamera/AVCameraHelpers.c \
-    src/USBCamera/AVEffectHelpers.c \
-    src/USBCamera/AVManagerHelpers.c \
-    src/USBCamera/AVStreamHelpers.c
+    src/FFMPEG/AVRTMPSkeletons.c \
+    src/FFMPEG/AVCameraSkeletons.c \
+    src/FFMPEG/AVContentSkeletons.c \
+    src/FFMPEG/AVFilterSkeletons.c
+
 
     
 
@@ -22,4 +22,4 @@ ffmpeg_camera_streamer_LDADD=\
     $(FLIBS) 
 EXTRA_DIST	 =  $(top_srcdir)/src/application/include/*
 #需要引用的动态库文件
-LIBS += -g -O2 -Wall -pedantic   -lm -levent -lssl -lcrypto -lpthread -levent_openssl -lcurl -lavformat -lavcodec -lavutil -lavdevice -lswscale -lswresample
+LIBS += -g -O2 -Wall -pedantic   -lm -levent -lssl -lcrypto -lpthread -levent_openssl -lcurl -lavformat -lavcodec -lavutil -lavdevice -lswscale -lswresample -lavfilter

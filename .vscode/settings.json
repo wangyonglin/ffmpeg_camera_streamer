@@ -1,6 +1,31 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
-        "avstreamhelpers.h": "c"
+        "avstreamhelpers.h": "c",
+        "avfiltershelpers.h": "c",
+        "imgutils.h": "c",
+        "avmp4streamhelpers.h": "c",
+        "avmp4skeletonhelpers.h": "c",
+        "random": "c",
+        "string.h": "c",
+        "allocate.h": "c",
+        "avskeletoncontroller.h": "c",
+        "avmanagerhelpers.h": "c",
+        "avoutputhelpers.h": "c",
+        "avcameracontroller.h": "c",
+        "avrtmpcontroller.h": "c",
+        "skeleton.h": "c",
+        "buffersink.h": "c",
+        "avfiltercontroller.h": "c",
+        "avconfigskeletons.h": "c",
+        "avcameraskeletons.h": "c",
+        "avrtmpskeletons.h": "c",
+        "avfilterskeletons.h": "c",
+        "skeletons.h": "c",
+        "avcontentskeletons.h": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c",
+        "opt.h": "c"
     }
 }

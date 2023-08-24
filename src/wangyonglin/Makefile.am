@@ -4,7 +4,7 @@ LIBS += -g -O2 -Wall -pedantic   -lm
 AM_CPPFLAGS= -I $(top_srcdir)/src/wangyonglin/include/
 lib_LTLIBRARIES=libwangyonglin.la
 libwangyonglin_la_SOURCES=\
-        src/Helpers/Allocate.c \
+        src/WangYonglin/Skeletons.c \
         src/Helpers/String.c \
         src/Helpers/EventTrigger.c \
         src/Helpers/KVTailq.c \

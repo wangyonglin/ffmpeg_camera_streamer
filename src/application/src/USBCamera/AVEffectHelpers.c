@@ -1,3 +1,0 @@
-#include <USBCamera/AVEffectHelpers.h>
-
-
