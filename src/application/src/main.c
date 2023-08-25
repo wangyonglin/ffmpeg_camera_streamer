@@ -35,10 +35,9 @@ int main(int argc, char *argv[])
   AVFilterInit(&filter_skell, ipt_ctx_skell, opt_ctx_skell, filter_descr);
 
   AVRTMPFilterWriteFrame(opt_ctx_skell, filter_skell, &loop);
+  
   AVFilterClear(filter_skell);
-
   AVRTMPClear(opt_ctx_skell);
-
   AVCameraClear(ipt_ctx_skell);
   return 0;
 }
