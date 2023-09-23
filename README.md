@@ -1,3 +1,4 @@
+../configure --prefix=/usr/local/ffmpeg_camera_streamer
 /usr/local/wangyonglin/bin/wangyonglin -d -c /usr/local/wangyonglin/conf/wangyonglin.conf
 #Makefile.am文件
 bin_PROGRAMS = xxx

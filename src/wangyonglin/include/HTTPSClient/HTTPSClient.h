@@ -13,7 +13,7 @@
   */
 #if !defined(INCLUDE_HTTPSCLIENT_HTTPSCLIENT_H)
 #define INCLUDE_HTTPSCLIENT_HTTPSCLIENT_H
-#include <Helpers/String.h>
+#include <Blackliner/Blackliner.h>
 #include <strings.h>
 #include <stdio.h>
 #include <assert.h>
@@ -33,7 +33,7 @@
 #include <openssl/rand.h>
 #include <HTTPSClient/openssl_hostname_validation.h>
 #include <cJSON/cJSON.h>
-#include <Helpers/KVTailq.h>
+
 typedef enum __HTTPSClientAction
 {
   HTTPSCLIENT_REQUEST_POST = EVHTTP_REQ_POST,

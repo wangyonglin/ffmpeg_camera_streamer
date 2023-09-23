@@ -2,13 +2,13 @@
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 #endif
 #include <HTTPSClient/HTTPSClient.h>
-#include <Helpers/String.h>
+
 
 Exception HTTPSClientRequest(HTTPSClient *client, unsigned char *ppostData);
 HTTPSClient *HTTPSClientCreate(const char *url)
 {
 	HTTPSClient *client = NULL;
-	ObjectRegisger((void **)&client, sizeof(HTTPSClient));
+	SkeletonAllocate((void **)&client, sizeof(HTTPSClient));
 	if (client)
 	{
 		client->url = url;
@@ -36,7 +36,7 @@ void HTTPSClientDestroy(HTTPSClient *pHTTPSClient)
 	if (pHTTPSClient)
 	{
 		KVTailqDestroy(pHTTPSClient->kvTailqHeader);
-		ObjectDestory(pHTTPSClient);
+		SkeletonDeallocate(pHTTPSClient);
 		DataStringDestory(pHTTPSClient->response);
 	}
 }

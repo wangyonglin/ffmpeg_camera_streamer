@@ -1,7 +1,7 @@
 #if !defined(INCLUDE_FFMPEG_AVCONTENTSKELETONS_H)
 #define INCLUDE_FFMPEG_AVCONTENTSKELETONS_H
 
-#include <Helpers/String.h>
+#include <Blackliner/Blackliner.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -26,6 +26,16 @@
         "array": "c",
         "string": "c",
         "string_view": "c",
-        "opt.h": "c"
+        "opt.h": "c",
+        "rand.h": "c",
+        "signal.h": "c",
+        "bio.h": "c",
+        "autowired.h": "c",
+        "*.tcc": "c",
+        "deque": "c",
+        "vector": "c",
+        "iterator": "c",
+        "tuple": "c",
+        "unix_timestamp_converter.h": "c"
     }
 }

@@ -4,11 +4,12 @@ LIBS += -g -O2 -Wall -pedantic   -lm
 AM_CPPFLAGS= -I $(top_srcdir)/src/wangyonglin/include/
 lib_LTLIBRARIES=libwangyonglin.la
 libwangyonglin_la_SOURCES=\
-        src/WangYonglin/Skeletons.c \
-        src/Helpers/String.c \
-        src/Helpers/EventTrigger.c \
-        src/Helpers/KVTailq.c \
-        src/Helpers/Unix_timestamp_converter.c \
+        src/Blackliner/Skeletons.c \
+        src/Blackliner/String.c \
+        src/Blackliner/EventTrigger.c \
+        src/Blackliner/KVTailq.c \
+        src/Blackliner/Unix_timestamp_converter.c \
+        src/Blackliner/Autowired.c \
         src/OpenSSL/base64.c   \
         src/SnowFlake/IdGenerator.c  \
         src/SnowFlake/IdGenOptions.c  \
