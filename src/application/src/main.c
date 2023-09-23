@@ -10,7 +10,7 @@
 // const char *filter_descr = "crop=2/3*in_w:2/3*in_h";
 // const char *filter_descr = "drawbox=x=100:y=100:w=100:h=100:color=pink@0.5";
 const char *filter_descr = "drawtext=fontfile=arial.ttf:fontcolor=red:fontsize=60:text='WangYonglin'";
-
+//ddd
 #define OUTPUT_URL "rtmp://192.168.1.2:1935/live/livestream"
 AVOutputContextSkeleton *opt_ctx_skell = NULL;
 AVInputContextSkeleton *ipt_ctx_skell = NULL;
