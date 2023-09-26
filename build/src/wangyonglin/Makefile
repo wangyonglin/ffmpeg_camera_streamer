@@ -133,13 +133,23 @@ am_libwangyonglin_la_OBJECTS = src/Blackliner/Skeletons.lo \
 	src/Blackliner/String.lo src/Blackliner/EventTrigger.lo \
 	src/Blackliner/KVTailq.lo \
 	src/Blackliner/Unix_timestamp_converter.lo \
-	src/Blackliner/Autowired.lo src/OpenSSL/base64.lo \
-	src/SnowFlake/IdGenerator.lo src/SnowFlake/IdGenOptions.lo \
-	src/SnowFlake/SnowFlake.lo src/SnowFlake/SnowWorkerM1.lo \
-	src/SnowFlake/SnowWorkerM2.lo src/cJSON/cJSON.lo \
-	src/cJSON/cJSON_Utils.lo src/HTTPSClient/HTTPSClient.lo \
+	src/Blackliner/Configuring.lo src/Blackliner/Logger.lo \
+	src/OpenSSL/base64.lo src/SnowFlake/IdGenerator.lo \
+	src/SnowFlake/IdGenOptions.lo src/SnowFlake/SnowFlake.lo \
+	src/SnowFlake/SnowWorkerM1.lo src/SnowFlake/SnowWorkerM2.lo \
+	src/cJSON/cJSON.lo src/cJSON/cJSON_Utils.lo \
+	src/HTTPSClient/HTTPSClient.lo \
 	src/HTTPSClient/openssl_hostname_validation.lo \
-	src/HTTPSClient/hostcheck.lo
+	src/HTTPSClient/hostcheck.lo src/zlog/buf.lo src/zlog/conf.lo \
+	src/zlog/lockfile.lo src/zlog/record.lo src/zlog/rule.lo \
+	src/zlog/zc_arraylist.lo src/zlog/zc_util.lo \
+	src/zlog/category.lo src/zlog/event.lo src/zlog/level.lo \
+	src/zlog/record_table.lo src/zlog/spec.lo \
+	src/zlog/zc_hashtable.lo src/zlog/zlog.lo \
+	src/zlog/category_table.lo src/zlog/format.lo \
+	src/zlog/level_list.lo src/zlog/mdc.lo src/zlog/rotater.lo \
+	src/zlog/thread.lo src/zlog/zc_profile.lo \
+	src/zlog/zlog-chk-conf.lo
 libwangyonglin_la_OBJECTS = $(am_libwangyonglin_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -160,9 +170,10 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = src/Blackliner/$(DEPDIR)/Autowired.Plo \
+am__depfiles_remade = src/Blackliner/$(DEPDIR)/Configuring.Plo \
 	src/Blackliner/$(DEPDIR)/EventTrigger.Plo \
 	src/Blackliner/$(DEPDIR)/KVTailq.Plo \
+	src/Blackliner/$(DEPDIR)/Logger.Plo \
 	src/Blackliner/$(DEPDIR)/Skeletons.Plo \
 	src/Blackliner/$(DEPDIR)/String.Plo \
 	src/Blackliner/$(DEPDIR)/Unix_timestamp_converter.Plo \
@@ -176,7 +187,23 @@ am__depfiles_remade = src/Blackliner/$(DEPDIR)/Autowired.Plo \
 	src/SnowFlake/$(DEPDIR)/SnowWorkerM1.Plo \
 	src/SnowFlake/$(DEPDIR)/SnowWorkerM2.Plo \
 	src/cJSON/$(DEPDIR)/cJSON.Plo \
-	src/cJSON/$(DEPDIR)/cJSON_Utils.Plo
+	src/cJSON/$(DEPDIR)/cJSON_Utils.Plo src/zlog/$(DEPDIR)/buf.Plo \
+	src/zlog/$(DEPDIR)/category.Plo \
+	src/zlog/$(DEPDIR)/category_table.Plo \
+	src/zlog/$(DEPDIR)/conf.Plo src/zlog/$(DEPDIR)/event.Plo \
+	src/zlog/$(DEPDIR)/format.Plo src/zlog/$(DEPDIR)/level.Plo \
+	src/zlog/$(DEPDIR)/level_list.Plo \
+	src/zlog/$(DEPDIR)/lockfile.Plo src/zlog/$(DEPDIR)/mdc.Plo \
+	src/zlog/$(DEPDIR)/record.Plo \
+	src/zlog/$(DEPDIR)/record_table.Plo \
+	src/zlog/$(DEPDIR)/rotater.Plo src/zlog/$(DEPDIR)/rule.Plo \
+	src/zlog/$(DEPDIR)/spec.Plo src/zlog/$(DEPDIR)/thread.Plo \
+	src/zlog/$(DEPDIR)/zc_arraylist.Plo \
+	src/zlog/$(DEPDIR)/zc_hashtable.Plo \
+	src/zlog/$(DEPDIR)/zc_profile.Plo \
+	src/zlog/$(DEPDIR)/zc_util.Plo \
+	src/zlog/$(DEPDIR)/zlog-chk-conf.Plo \
+	src/zlog/$(DEPDIR)/zlog.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -353,18 +380,41 @@ libwangyonglin_la_SOURCES = \
         src/Blackliner/EventTrigger.c \
         src/Blackliner/KVTailq.c \
         src/Blackliner/Unix_timestamp_converter.c \
-        src/Blackliner/Autowired.c \
+        src/Blackliner/Configuring.c \
+		src/Blackliner/Logger.c \
         src/OpenSSL/base64.c   \
         src/SnowFlake/IdGenerator.c  \
         src/SnowFlake/IdGenOptions.c  \
         src/SnowFlake/SnowFlake.c  \
         src/SnowFlake/SnowWorkerM1.c  \
         src/SnowFlake/SnowWorkerM2.c	\
-	src/cJSON/cJSON.c \
+		src/cJSON/cJSON.c \
         src/cJSON/cJSON_Utils.c \
         src/HTTPSClient/HTTPSClient.c \
         src/HTTPSClient/openssl_hostname_validation.c \
-        src/HTTPSClient/hostcheck.c
+        src/HTTPSClient/hostcheck.c \
+        src/zlog/buf.c \
+		src/zlog/conf.c \
+		src/zlog/lockfile.c \
+		src/zlog/record.c \
+		src/zlog/rule.c \
+		src/zlog/zc_arraylist.c \
+		src/zlog/zc_util.c \
+		src/zlog/category.c \
+		src/zlog/event.c \
+		src/zlog/level.c \
+		src/zlog/record_table.c \
+		src/zlog/spec.c \
+		src/zlog/zc_hashtable.c \
+		src/zlog/zlog.c \
+		src/zlog/category_table.c\
+		src/zlog/format.c \
+		src/zlog/level_list.c \
+		src/zlog/mdc.c \
+		src/zlog/rotater.c \
+		src/zlog/thread.c \
+		src/zlog/zc_profile.c \
+		src/zlog/zlog-chk-conf.c
 
 all: all-am
 
@@ -451,7 +501,9 @@ src/Blackliner/KVTailq.lo: src/Blackliner/$(am__dirstamp) \
 src/Blackliner/Unix_timestamp_converter.lo:  \
 	src/Blackliner/$(am__dirstamp) \
 	src/Blackliner/$(DEPDIR)/$(am__dirstamp)
-src/Blackliner/Autowired.lo: src/Blackliner/$(am__dirstamp) \
+src/Blackliner/Configuring.lo: src/Blackliner/$(am__dirstamp) \
+	src/Blackliner/$(DEPDIR)/$(am__dirstamp)
+src/Blackliner/Logger.lo: src/Blackliner/$(am__dirstamp) \
 	src/Blackliner/$(DEPDIR)/$(am__dirstamp)
 src/OpenSSL/$(am__dirstamp):
 	@$(MKDIR_P) src/OpenSSL
@@ -500,6 +552,56 @@ src/HTTPSClient/openssl_hostname_validation.lo:  \
 	src/HTTPSClient/$(DEPDIR)/$(am__dirstamp)
 src/HTTPSClient/hostcheck.lo: src/HTTPSClient/$(am__dirstamp) \
 	src/HTTPSClient/$(DEPDIR)/$(am__dirstamp)
+src/zlog/$(am__dirstamp):
+	@$(MKDIR_P) src/zlog
+	@: > src/zlog/$(am__dirstamp)
+src/zlog/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/zlog/$(DEPDIR)
+	@: > src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/buf.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/conf.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/lockfile.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/record.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/rule.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/zc_arraylist.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/zc_util.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/category.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/event.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/level.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/record_table.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/spec.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/zc_hashtable.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/zlog.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/category_table.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/format.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/level_list.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/mdc.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/rotater.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/thread.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/zc_profile.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
+src/zlog/zlog-chk-conf.lo: src/zlog/$(am__dirstamp) \
+	src/zlog/$(DEPDIR)/$(am__dirstamp)
 
 libwangyonglin.la: $(libwangyonglin_la_OBJECTS) $(libwangyonglin_la_DEPENDENCIES) $(EXTRA_libwangyonglin_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) -rpath $(libdir) $(libwangyonglin_la_OBJECTS) $(libwangyonglin_la_LIBADD) $(LIBS)
@@ -516,13 +618,16 @@ mostlyclean-compile:
 	-rm -f src/SnowFlake/*.lo
 	-rm -f src/cJSON/*.$(OBJEXT)
 	-rm -f src/cJSON/*.lo
+	-rm -f src/zlog/*.$(OBJEXT)
+	-rm -f src/zlog/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-include src/Blackliner/$(DEPDIR)/Autowired.Plo # am--include-marker
+include src/Blackliner/$(DEPDIR)/Configuring.Plo # am--include-marker
 include src/Blackliner/$(DEPDIR)/EventTrigger.Plo # am--include-marker
 include src/Blackliner/$(DEPDIR)/KVTailq.Plo # am--include-marker
+include src/Blackliner/$(DEPDIR)/Logger.Plo # am--include-marker
 include src/Blackliner/$(DEPDIR)/Skeletons.Plo # am--include-marker
 include src/Blackliner/$(DEPDIR)/String.Plo # am--include-marker
 include src/Blackliner/$(DEPDIR)/Unix_timestamp_converter.Plo # am--include-marker
@@ -537,6 +642,28 @@ include src/SnowFlake/$(DEPDIR)/SnowWorkerM1.Plo # am--include-marker
 include src/SnowFlake/$(DEPDIR)/SnowWorkerM2.Plo # am--include-marker
 include src/cJSON/$(DEPDIR)/cJSON.Plo # am--include-marker
 include src/cJSON/$(DEPDIR)/cJSON_Utils.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/buf.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/category.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/category_table.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/conf.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/event.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/format.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/level.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/level_list.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/lockfile.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/mdc.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/record.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/record_table.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/rotater.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/rule.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/spec.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/thread.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/zc_arraylist.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/zc_hashtable.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/zc_profile.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/zc_util.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/zlog-chk-conf.Plo # am--include-marker
+include src/zlog/$(DEPDIR)/zlog.Plo # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -578,6 +705,7 @@ clean-libtool:
 	-rm -rf src/OpenSSL/.libs src/OpenSSL/_libs
 	-rm -rf src/SnowFlake/.libs src/SnowFlake/_libs
 	-rm -rf src/cJSON/.libs src/cJSON/_libs
+	-rm -rf src/zlog/.libs src/zlog/_libs
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -707,6 +835,8 @@ distclean-generic:
 	-rm -f src/SnowFlake/$(am__dirstamp)
 	-rm -f src/cJSON/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/cJSON/$(am__dirstamp)
+	-rm -f src/zlog/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/zlog/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -717,9 +847,10 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 	mostlyclean-am
 
 distclean: distclean-am
-		-rm -f src/Blackliner/$(DEPDIR)/Autowired.Plo
+		-rm -f src/Blackliner/$(DEPDIR)/Configuring.Plo
 	-rm -f src/Blackliner/$(DEPDIR)/EventTrigger.Plo
 	-rm -f src/Blackliner/$(DEPDIR)/KVTailq.Plo
+	-rm -f src/Blackliner/$(DEPDIR)/Logger.Plo
 	-rm -f src/Blackliner/$(DEPDIR)/Skeletons.Plo
 	-rm -f src/Blackliner/$(DEPDIR)/String.Plo
 	-rm -f src/Blackliner/$(DEPDIR)/Unix_timestamp_converter.Plo
@@ -734,6 +865,28 @@ distclean: distclean-am
 	-rm -f src/SnowFlake/$(DEPDIR)/SnowWorkerM2.Plo
 	-rm -f src/cJSON/$(DEPDIR)/cJSON.Plo
 	-rm -f src/cJSON/$(DEPDIR)/cJSON_Utils.Plo
+	-rm -f src/zlog/$(DEPDIR)/buf.Plo
+	-rm -f src/zlog/$(DEPDIR)/category.Plo
+	-rm -f src/zlog/$(DEPDIR)/category_table.Plo
+	-rm -f src/zlog/$(DEPDIR)/conf.Plo
+	-rm -f src/zlog/$(DEPDIR)/event.Plo
+	-rm -f src/zlog/$(DEPDIR)/format.Plo
+	-rm -f src/zlog/$(DEPDIR)/level.Plo
+	-rm -f src/zlog/$(DEPDIR)/level_list.Plo
+	-rm -f src/zlog/$(DEPDIR)/lockfile.Plo
+	-rm -f src/zlog/$(DEPDIR)/mdc.Plo
+	-rm -f src/zlog/$(DEPDIR)/record.Plo
+	-rm -f src/zlog/$(DEPDIR)/record_table.Plo
+	-rm -f src/zlog/$(DEPDIR)/rotater.Plo
+	-rm -f src/zlog/$(DEPDIR)/rule.Plo
+	-rm -f src/zlog/$(DEPDIR)/spec.Plo
+	-rm -f src/zlog/$(DEPDIR)/thread.Plo
+	-rm -f src/zlog/$(DEPDIR)/zc_arraylist.Plo
+	-rm -f src/zlog/$(DEPDIR)/zc_hashtable.Plo
+	-rm -f src/zlog/$(DEPDIR)/zc_profile.Plo
+	-rm -f src/zlog/$(DEPDIR)/zc_util.Plo
+	-rm -f src/zlog/$(DEPDIR)/zlog-chk-conf.Plo
+	-rm -f src/zlog/$(DEPDIR)/zlog.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -779,9 +932,10 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f src/Blackliner/$(DEPDIR)/Autowired.Plo
+		-rm -f src/Blackliner/$(DEPDIR)/Configuring.Plo
 	-rm -f src/Blackliner/$(DEPDIR)/EventTrigger.Plo
 	-rm -f src/Blackliner/$(DEPDIR)/KVTailq.Plo
+	-rm -f src/Blackliner/$(DEPDIR)/Logger.Plo
 	-rm -f src/Blackliner/$(DEPDIR)/Skeletons.Plo
 	-rm -f src/Blackliner/$(DEPDIR)/String.Plo
 	-rm -f src/Blackliner/$(DEPDIR)/Unix_timestamp_converter.Plo
@@ -796,6 +950,28 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/SnowFlake/$(DEPDIR)/SnowWorkerM2.Plo
 	-rm -f src/cJSON/$(DEPDIR)/cJSON.Plo
 	-rm -f src/cJSON/$(DEPDIR)/cJSON_Utils.Plo
+	-rm -f src/zlog/$(DEPDIR)/buf.Plo
+	-rm -f src/zlog/$(DEPDIR)/category.Plo
+	-rm -f src/zlog/$(DEPDIR)/category_table.Plo
+	-rm -f src/zlog/$(DEPDIR)/conf.Plo
+	-rm -f src/zlog/$(DEPDIR)/event.Plo
+	-rm -f src/zlog/$(DEPDIR)/format.Plo
+	-rm -f src/zlog/$(DEPDIR)/level.Plo
+	-rm -f src/zlog/$(DEPDIR)/level_list.Plo
+	-rm -f src/zlog/$(DEPDIR)/lockfile.Plo
+	-rm -f src/zlog/$(DEPDIR)/mdc.Plo
+	-rm -f src/zlog/$(DEPDIR)/record.Plo
+	-rm -f src/zlog/$(DEPDIR)/record_table.Plo
+	-rm -f src/zlog/$(DEPDIR)/rotater.Plo
+	-rm -f src/zlog/$(DEPDIR)/rule.Plo
+	-rm -f src/zlog/$(DEPDIR)/spec.Plo
+	-rm -f src/zlog/$(DEPDIR)/thread.Plo
+	-rm -f src/zlog/$(DEPDIR)/zc_arraylist.Plo
+	-rm -f src/zlog/$(DEPDIR)/zc_hashtable.Plo
+	-rm -f src/zlog/$(DEPDIR)/zc_profile.Plo
+	-rm -f src/zlog/$(DEPDIR)/zc_util.Plo
+	-rm -f src/zlog/$(DEPDIR)/zlog-chk-conf.Plo
+	-rm -f src/zlog/$(DEPDIR)/zlog.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

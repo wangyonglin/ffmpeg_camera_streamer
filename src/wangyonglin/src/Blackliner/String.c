@@ -2,7 +2,6 @@
 
 
 
-
 char *StringRegister(char **deststring, char *datastring, size_t datalength)
 {
     if ((*deststring) = malloc(datalength + 1))
@@ -30,8 +29,6 @@ DataString DataStringRegister(char *datastring, size_t datalength)
     deststring.datalength = datalength;
     return deststring;
 }
-
-
 
 void DataStringDestory(DataString deststring)
 {

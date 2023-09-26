@@ -36,6 +36,18 @@
         "vector": "c",
         "iterator": "c",
         "tuple": "c",
-        "unix_timestamp_converter.h": "c"
+        "unix_timestamp_converter.h": "c",
+        "logger.h": "c",
+        "zlog.h": "c",
+        "cmath": "c",
+        "optional": "c",
+        "istream": "c",
+        "ostream": "c",
+        "system_error": "c",
+        "functional": "c",
+        "type_traits": "c",
+        "utility": "c",
+        "configuration.h": "c",
+        "configure.h": "c"
     }
 }

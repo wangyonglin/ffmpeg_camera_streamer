@@ -5,5 +5,5 @@
 #include <Blackliner/EventTrigger.h>
 #include <Blackliner/Unix_timestamp_converter.h>
 #include <Blackliner/KVTailq.h>
-#include <Blackliner/Autowired.h>
+#include <Blackliner/Configuring.h>
 #endif

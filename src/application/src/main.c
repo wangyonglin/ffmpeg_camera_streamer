@@ -2,6 +2,9 @@
 #include <FFMPEG/AVRTMPSkeletons.h>
 #include <FFMPEG/AVFilterSkeletons.h>
 #include <Blackliner/Blackliner.h>
+#include <Blackliner/Logger.h>
+#include <Blackliner/Configuring.h>
+
 // const char *filter_descr = "scale=78:24,transpose=cclock";
 //  const char *filter_descr = "lutyuv='u=128:v=128'";
 // const char *filter_descr = "boxblur";
@@ -41,6 +44,17 @@ int main(int argc, char *argv[])
   // AVFilterClear(filter_skell);
   // AVRTMPClear(opt_ctx_skell);
   // AVCameraClear(ipt_ctx_skell);
+
+  Configuring *config = NULL;
+  ConfiguringInit(&config, inif);
+
+  logger *log = NULL;
+  logger_init(&log, config);
+
+  logger_info(log, "wangyonglin%s",log->log_rule_error.valuestring);
+
+  logger_destroy(log);
+  ConfiguringDestroy(config);
 
   return 0;
 }

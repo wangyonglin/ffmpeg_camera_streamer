@@ -144,7 +144,7 @@ src/FFMPEG/AVRTMPSkeletons.o: \
  /usr/lib/gcc/x86_64-linux-gnu/9/include/stdbool.h \
  ../../../src/wangyonglin/include/Blackliner/EventTrigger.h \
  ../../../src/wangyonglin/include/Blackliner/KVTailq.h \
- ../../../src/wangyonglin/include/Blackliner/Autowired.h \
+ ../../../src/wangyonglin/include/Blackliner/Configuring.h \
  /usr/include/x86_64-linux-gnu/libavfilter/avfilter.h \
  /usr/include/x86_64-linux-gnu/libavutil/attributes.h \
  /usr/include/x86_64-linux-gnu/libavutil/avutil.h \
@@ -547,7 +547,7 @@ src/FFMPEG/AVRTMPSkeletons.o: \
 
 ../../../src/wangyonglin/include/Blackliner/KVTailq.h:
 
-../../../src/wangyonglin/include/Blackliner/Autowired.h:
+../../../src/wangyonglin/include/Blackliner/Configuring.h:
 
 /usr/include/x86_64-linux-gnu/libavfilter/avfilter.h:
 

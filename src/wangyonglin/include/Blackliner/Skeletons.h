@@ -17,6 +17,24 @@
 #include <openssl/conf.h>
 #include <openssl/bio.h>
 
+#ifndef INTERNAL_HOOKS_THIS
+#define INTERNAL_HOOKS_THIS
+typedef struct internal_hooks
+{
+    void *(*allocate)(size_t objsize);
+    void (*deallocate)(void *obj);
+    void *(*reallocate)(void *obj, size_t objsize);
+
+} internal_hooks;
+static internal_hooks global_hooks = {malloc, free, realloc};
+#endif
+
+typedef int ok_t;
+#define ok_success ((ok_t)(0))
+#define ok_fail ((ok_t)(-1))
+#define ok_error ((ok_t)(-2))
+
+typedef long Integer;
 typedef int Boolean;
 #define Boolean_true ((Boolean)(1))
 #define Boolean_false ((Boolean)(0))
@@ -47,12 +65,31 @@ typedef enum __class_type_t
     class_integer_type
 } class_type_t;
 
+typedef struct String
+{
+    size_t valuelength;
+    uint8_t *valuestring;
+} String, *PString;
+#define STRING_NULL \
+    (String) { 0, NULL }
+
 void *SkeletonAllocate(void **dest, size_t destsize);
 void SkeletonDeallocate(void *dest);
 
-char *StringInit(char **dest, char *datastring, size_t datalength);
-void StringDelete(char *dest);
+String *pStringInit(String **deststring, char *valuestring, size_t valuelength);
+void pStringFree(String *dest);
 
-unsigned char *IntegerInit(unsigned char **skeleton, long value);
-unsigned char *BooleanInit(unsigned char **skeleton, Boolean value);
+uint8_t *StringInit(String *deststring, char *valuestring, size_t valuelength);
+void StringFree(String deststring);
+
+void *SkeletonInit(void **dest, size_t destsize);
+void SkeletonFree(void *dest);
+
+char *BufferInit(char **dest, char *datastring, size_t datalength);
+void BufferFree(char *dest);
+char *BufferFormat(char **__dest, size_t fmtsize, char *format, ...);
+char *BufferCatenate(char *__restrict__ __dest, size_t fmtsize, char *format, ...);
+
+uint8_t *IntegerInit(uint8_t **skeleton, long value);
+uint8_t *BooleanInit(uint8_t **skeleton, Boolean value);
 #endif

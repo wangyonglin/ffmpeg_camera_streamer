@@ -143,7 +143,7 @@ src/main.o: ../../../src/application/src/main.c \
  /usr/lib/gcc/x86_64-linux-gnu/9/include/stdbool.h \
  ../../../src/wangyonglin/include/Blackliner/EventTrigger.h \
  ../../../src/wangyonglin/include/Blackliner/KVTailq.h \
- ../../../src/wangyonglin/include/Blackliner/Autowired.h \
+ ../../../src/wangyonglin/include/Blackliner/Configuring.h \
  /usr/include/x86_64-linux-gnu/libavfilter/avfilter.h \
  /usr/include/x86_64-linux-gnu/libavutil/attributes.h \
  /usr/include/x86_64-linux-gnu/libavutil/avutil.h \
@@ -202,7 +202,9 @@ src/main.o: ../../../src/application/src/main.c \
  /usr/include/x86_64-linux-gnu/libavfilter/avfilter.h \
  /usr/include/x86_64-linux-gnu/libavfilter/buffersrc.h \
  ../../../src/application/include/FFMPEG/AVRTMPSkeletons.h \
- ../../../src/application/include/FFMPEG/AVFilterSkeletons.h
+ ../../../src/application/include/FFMPEG/AVFilterSkeletons.h \
+ ../../../src/wangyonglin/include/Blackliner/Logger.h \
+ ../../../src/linuxos/include/zlog/zlog.h
 
 /usr/include/stdc-predef.h:
 
@@ -546,7 +548,7 @@ src/main.o: ../../../src/application/src/main.c \
 
 ../../../src/wangyonglin/include/Blackliner/KVTailq.h:
 
-../../../src/wangyonglin/include/Blackliner/Autowired.h:
+../../../src/wangyonglin/include/Blackliner/Configuring.h:
 
 /usr/include/x86_64-linux-gnu/libavfilter/avfilter.h:
 
@@ -667,3 +669,7 @@ src/main.o: ../../../src/application/src/main.c \
 ../../../src/application/include/FFMPEG/AVRTMPSkeletons.h:
 
 ../../../src/application/include/FFMPEG/AVFilterSkeletons.h:
+
+../../../src/wangyonglin/include/Blackliner/Logger.h:
+
+../../../src/linuxos/include/zlog/zlog.h:
