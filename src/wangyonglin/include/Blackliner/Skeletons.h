@@ -30,12 +30,18 @@ static internal_hooks global_hooks = {malloc, free, realloc};
 #endif
 
 typedef int ok_t;
+#define bl_ok ((ok_t)(0))
+#define bl_fail ((ok_t)(-1))
+#define bl_err ((ok_t)(-2))
 #define ok_success ((ok_t)(0))
 #define ok_fail ((ok_t)(-1))
 #define ok_error ((ok_t)(-2))
 
 typedef long Integer;
 typedef int Boolean;
+#define bl_true ((Boolean)(1))
+#define bl_false ((Boolean)(0))
+#define bl_invalid ((Boolean)(-1))
 #define Boolean_true ((Boolean)(1))
 #define Boolean_false ((Boolean)(0))
 #define Boolean_invalid ((Boolean)(-1))
@@ -80,6 +86,7 @@ String *pStringInit(String **deststring, char *valuestring, size_t valuelength);
 void pStringFree(String *dest);
 
 uint8_t *StringInit(String *deststring, char *valuestring, size_t valuelength);
+uint8_t * StringGetting(String deststring);
 void StringFree(String deststring);
 
 void *SkeletonInit(void **dest, size_t destsize);

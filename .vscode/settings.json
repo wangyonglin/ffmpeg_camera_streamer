@@ -48,6 +48,8 @@
         "type_traits": "c",
         "utility": "c",
         "configuration.h": "c",
-        "configure.h": "c"
+        "configure.h": "c",
+        "kvtailq.h": "c",
+        "configuring.h": "c"
     }
 }

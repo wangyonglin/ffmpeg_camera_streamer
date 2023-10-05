@@ -19,7 +19,7 @@ typedef struct Configuring
 
 Configuring *ConfiguringInit(Configuring **config, char *filename);
 void ConfiguringDestroy(Configuring *config);
-ok_t ConfiguringString(Configuring *config, String *skeleton, const char *section, const char *name);
-ok_t ConfiguringInteger(Configuring *config, Integer *skeleton, const char *section, const char *name);
-ok_t ConfiguringBoolean(Configuring *config, Boolean *skeleton, const char *section, const char *name);
+ok_t ConfiguringString(Configuring *config, String *skeleton, const char *section, const char *name, uint8_t *value);
+ok_t ConfiguringInteger(Configuring *config, Integer *skeleton, const char *section, const char *name,Integer value);
+ok_t ConfiguringBoolean(Configuring *config, Boolean *skeleton, const char *section, const char *name,Boolean value);
 #endif

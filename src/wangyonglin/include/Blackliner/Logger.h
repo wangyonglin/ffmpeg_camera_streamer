@@ -7,16 +7,13 @@ typedef struct logger
 {
     zlog_category_t *log;
     Boolean display_errors;
-    String log_error;
-    String log_rule_error;
-    String log_rule_info;
-    String name;
+    String rule_error;
+    String rule_info;
     String simple;
     String normal;
-    Integer port;
+
 } logger;
 
-//void logger_error(logger *_logger, const char *format, ...) __attribute__((format(printf, 2, 3)));
 
 #define logger_info(cat, ...) zlog_info(cat->log,__VA_ARGS__)
 #define logger_error(cat, ...)   zlog_error(cat->log,__VA_ARGS__)

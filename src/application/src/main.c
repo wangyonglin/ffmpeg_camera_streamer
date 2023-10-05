@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
   logger *log = NULL;
   logger_init(&log, config);
 
-  logger_info(log, "wangyonglin%s",log->log_rule_error.valuestring);
+  logger_info(log, "wangyonglin%s",log->rule_error.valuestring);
 
   logger_destroy(log);
   ConfiguringDestroy(config);

@@ -175,7 +175,7 @@ void ConfiguringDestroy(Configuring *config)
     }
 }
 
-ok_t ConfiguringString(Configuring *config, String *skeleton, const char *section, const char *name)
+ok_t ConfiguringString(Configuring *config, String *skeleton, const char *section, const char *name, uint8_t *value)
 {
     assert(name);
     if (config && skeleton)
@@ -184,17 +184,27 @@ ok_t ConfiguringString(Configuring *config, String *skeleton, const char *sectio
         if (out)
         {
             StringInit((String *)skeleton, out, strlen(out));
-            return ok_success;
+            return bl_ok;
         }
         else
         {
-            StringInit((String *)skeleton, NULL, 0);
-            return ok_error;
+            if (value)
+            {
+                int valuelenth = strlen(value);
+                StringInit((String *)skeleton, value, valuelenth);
+                return bl_ok;
+            }
+            else
+            {
+                StringInit((String *)skeleton, NULL, 0);
+            }
+
+            return bl_err;
         }
     }
-    return ok_fail;
+    return bl_fail;
 }
-ok_t ConfiguringInteger(Configuring *config, Integer *skeleton, const char *section, const char *name)
+ok_t ConfiguringInteger(Configuring *config, Integer *skeleton, const char *section, const char *name,Integer value)
 {
     assert(name);
     if (config && skeleton)
@@ -203,12 +213,15 @@ ok_t ConfiguringInteger(Configuring *config, Integer *skeleton, const char *sect
         if (NCONF_get_number(config->conf, section, name, &callintger) == 1)
         {
             IntegerInit((uint8_t **)skeleton, callintger);
-            return ok_success;
+            return bl_ok;
+        }else{
+             IntegerInit((uint8_t **)skeleton, value);
+             return bl_err;
         }
     }
-    return ok_fail;
+    return bl_fail;
 }
-ok_t ConfiguringBoolean(Configuring *config, Boolean *skeleton, const char *section, const char *name)
+ok_t ConfiguringBoolean(Configuring *config, Boolean *skeleton, const char *section, const char *name,Boolean value)
 {
     assert(name);
     if (config && skeleton)
@@ -231,7 +244,7 @@ ok_t ConfiguringBoolean(Configuring *config, Boolean *skeleton, const char *sect
         }
         else
         {
-            BooleanInit((uint8_t **)skeleton, Boolean_invalid);
+            BooleanInit((uint8_t **)skeleton, value);
             return ok_error;
         }
     }

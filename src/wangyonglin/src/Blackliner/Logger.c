@@ -8,11 +8,11 @@ logger *logger_init(logger **__logger, Configuring *config)
     logger *_logger = NULL;
     if ((_logger = SkeletonAllocate((void **)__logger, sizeof(logger))))
     {
-        ConfiguringString(config, &_logger->simple, "global", "simple");
-        ConfiguringString(config, &_logger->normal, "global", "normal");
-        ConfiguringString(config, &_logger->log_rule_error, "global", "log_rule_error");
-        ConfiguringString(config, &_logger->log_rule_info, "global", "log_rule_info");
-        ConfiguringBoolean(config, &_logger->display_errors, "global", "display_errors");
+        ConfiguringString(config, &_logger->simple, "global", "simple",NULL);
+        ConfiguringString(config, &_logger->normal, "global", "normal",NULL);
+        ConfiguringString(config, &_logger->rule_error, "global", "rule_error","./log/error.log");
+        ConfiguringString(config, &_logger->rule_info, "global", "rule_info","./log/info.log");
+        ConfiguringBoolean(config, &_logger->display_errors, "global", "display_errors",bl_true);
         // 初始化 zlog_init 字符串值
         char zlog_init_values[512] = {0};
         strcat(zlog_init_values, "[global]\n");
@@ -38,13 +38,13 @@ logger *logger_init(logger **__logger, Configuring *config)
         }
         else
         {
-            if (_logger->log_rule_info.valuestring != NULL)
+            if (_logger->rule_info.valuestring != NULL)
             {
-                BufferCatenate(zlog_init_values, 256, "log_rule.INFO		%s\n", _logger->log_rule_info.valuestring);
+                BufferCatenate(zlog_init_values, 256, "log_rule.INFO		%s\n", _logger->rule_info.valuestring);
             }
-            if (_logger->log_rule_error.valuestring != NULL)
+            if (_logger->rule_error.valuestring != NULL)
             {
-                BufferCatenate(zlog_init_values, 256, "log_rule.ERROR		%s\n", _logger->log_rule_error.valuestring);
+                BufferCatenate(zlog_init_values, 256, "log_rule.ERROR		%s\n", _logger->rule_error.valuestring);
             }
         }
 

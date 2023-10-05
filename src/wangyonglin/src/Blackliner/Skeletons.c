@@ -90,6 +90,9 @@ uint8_t *StringInit(String *deststring, char *valuestring, size_t valuelength)
     }
     return NULL;
 }
+uint8_t * StringGetting(String deststring){
+    return deststring.valuestring;
+}
 
 void StringFree(String deststring)
 {
