@@ -22,6 +22,7 @@ libwangyonglin_la_SOURCES=\
         src/HTTPSClient/HTTPSClient.c \
         src/HTTPSClient/openssl_hostname_validation.c \
         src/HTTPSClient/hostcheck.c \
+		src/HTTPSClient/HTTPSRequest.c \
         src/zlog/buf.c \
 		src/zlog/conf.c \
 		src/zlog/lockfile.c \

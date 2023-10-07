@@ -140,11 +140,11 @@ am_libwangyonglin_la_OBJECTS = src/Blackliner/Skeletons.lo \
 	src/cJSON/cJSON.lo src/cJSON/cJSON_Utils.lo \
 	src/HTTPSClient/HTTPSClient.lo \
 	src/HTTPSClient/openssl_hostname_validation.lo \
-	src/HTTPSClient/hostcheck.lo src/zlog/buf.lo src/zlog/conf.lo \
-	src/zlog/lockfile.lo src/zlog/record.lo src/zlog/rule.lo \
-	src/zlog/zc_arraylist.lo src/zlog/zc_util.lo \
-	src/zlog/category.lo src/zlog/event.lo src/zlog/level.lo \
-	src/zlog/record_table.lo src/zlog/spec.lo \
+	src/HTTPSClient/hostcheck.lo src/HTTPSClient/HTTPSRequest.lo \
+	src/zlog/buf.lo src/zlog/conf.lo src/zlog/lockfile.lo \
+	src/zlog/record.lo src/zlog/rule.lo src/zlog/zc_arraylist.lo \
+	src/zlog/zc_util.lo src/zlog/category.lo src/zlog/event.lo \
+	src/zlog/level.lo src/zlog/record_table.lo src/zlog/spec.lo \
 	src/zlog/zc_hashtable.lo src/zlog/zlog.lo \
 	src/zlog/category_table.lo src/zlog/format.lo \
 	src/zlog/level_list.lo src/zlog/mdc.lo src/zlog/rotater.lo \
@@ -178,6 +178,7 @@ am__depfiles_remade = src/Blackliner/$(DEPDIR)/Configuring.Plo \
 	src/Blackliner/$(DEPDIR)/String.Plo \
 	src/Blackliner/$(DEPDIR)/Unix_timestamp_converter.Plo \
 	src/HTTPSClient/$(DEPDIR)/HTTPSClient.Plo \
+	src/HTTPSClient/$(DEPDIR)/HTTPSRequest.Plo \
 	src/HTTPSClient/$(DEPDIR)/hostcheck.Plo \
 	src/HTTPSClient/$(DEPDIR)/openssl_hostname_validation.Plo \
 	src/OpenSSL/$(DEPDIR)/base64.Plo \
@@ -393,6 +394,7 @@ libwangyonglin_la_SOURCES = \
         src/HTTPSClient/HTTPSClient.c \
         src/HTTPSClient/openssl_hostname_validation.c \
         src/HTTPSClient/hostcheck.c \
+		src/HTTPSClient/HTTPSRequest.c \
         src/zlog/buf.c \
 		src/zlog/conf.c \
 		src/zlog/lockfile.c \
@@ -552,6 +554,8 @@ src/HTTPSClient/openssl_hostname_validation.lo:  \
 	src/HTTPSClient/$(DEPDIR)/$(am__dirstamp)
 src/HTTPSClient/hostcheck.lo: src/HTTPSClient/$(am__dirstamp) \
 	src/HTTPSClient/$(DEPDIR)/$(am__dirstamp)
+src/HTTPSClient/HTTPSRequest.lo: src/HTTPSClient/$(am__dirstamp) \
+	src/HTTPSClient/$(DEPDIR)/$(am__dirstamp)
 src/zlog/$(am__dirstamp):
 	@$(MKDIR_P) src/zlog
 	@: > src/zlog/$(am__dirstamp)
@@ -632,6 +636,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/Blackliner/$(DEPDIR)/String.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/Blackliner/$(DEPDIR)/Unix_timestamp_converter.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/HTTPSClient/$(DEPDIR)/HTTPSClient.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/HTTPSClient/$(DEPDIR)/HTTPSRequest.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/HTTPSClient/$(DEPDIR)/hostcheck.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/HTTPSClient/$(DEPDIR)/openssl_hostname_validation.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/OpenSSL/$(DEPDIR)/base64.Plo@am__quote@ # am--include-marker
@@ -855,6 +860,7 @@ distclean: distclean-am
 	-rm -f src/Blackliner/$(DEPDIR)/String.Plo
 	-rm -f src/Blackliner/$(DEPDIR)/Unix_timestamp_converter.Plo
 	-rm -f src/HTTPSClient/$(DEPDIR)/HTTPSClient.Plo
+	-rm -f src/HTTPSClient/$(DEPDIR)/HTTPSRequest.Plo
 	-rm -f src/HTTPSClient/$(DEPDIR)/hostcheck.Plo
 	-rm -f src/HTTPSClient/$(DEPDIR)/openssl_hostname_validation.Plo
 	-rm -f src/OpenSSL/$(DEPDIR)/base64.Plo
@@ -940,6 +946,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/Blackliner/$(DEPDIR)/String.Plo
 	-rm -f src/Blackliner/$(DEPDIR)/Unix_timestamp_converter.Plo
 	-rm -f src/HTTPSClient/$(DEPDIR)/HTTPSClient.Plo
+	-rm -f src/HTTPSClient/$(DEPDIR)/HTTPSRequest.Plo
 	-rm -f src/HTTPSClient/$(DEPDIR)/hostcheck.Plo
 	-rm -f src/HTTPSClient/$(DEPDIR)/openssl_hostname_validation.Plo
 	-rm -f src/OpenSSL/$(DEPDIR)/base64.Plo

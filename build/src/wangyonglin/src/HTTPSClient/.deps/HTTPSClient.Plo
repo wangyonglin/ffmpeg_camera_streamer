@@ -1,0 +1,5 @@
+src/HTTPSClient/HTTPSClient.lo: \
+ ../../../src/wangyonglin/src/HTTPSClient/HTTPSClient.c \
+ /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:

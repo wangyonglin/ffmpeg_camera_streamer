@@ -1,129 +1,172 @@
 #include <Blackliner/String.h>
 
-
-
-char *StringRegister(char **deststring, char *datastring, size_t datalength)
+void *SkeletonAllocate(void **dest, size_t destsize)
 {
-    if ((*deststring) = malloc(datalength + 1))
+
+    if ((*dest) = global_hooks.allocate(destsize))
     {
-        memset((*deststring), 0x00, datalength + 1);
-        memcpy((*deststring), datastring, datalength);
-        return (*deststring);
+
+        if (memset((*dest), 0x00, destsize))
+        {
+            return (*dest);
+        }
     }
-    return NULL;
+    return (*dest);
 }
 
-void StringDestory(char *deststring)
-{
-    if (deststring)
-    {
-        free(deststring);
-    }
-}
 
-DataString DataStringRegister(char *datastring, size_t datalength)
-{
-    DataString deststring;
-    memset(&deststring, 0x00, sizeof(DataString));
-    StringRegister(&(deststring.datastring), datastring, datalength);
-    deststring.datalength = datalength;
-    return deststring;
-}
 
-void DataStringDestory(DataString deststring)
-{
-    if (deststring.datastring)
-    {
-        StringDestory(deststring.datastring);
-    }
-    deststring.datalength = 0;
-}
-
-char *BufferRegister(uint8_t **deststring, uint8_t *datastring, size_t datalength)
-{
-    if ((*deststring) = malloc(datalength + 1))
-    {
-        memset((*deststring), 0x00, datalength + 1);
-        memcpy((*deststring), datastring, datalength);
-        return (*deststring);
-    }
-    return NULL;
-}
-
-void BufferDestory(uint8_t *deststring)
-{
-    if (deststring)
-    {
-        free(deststring);
-    }
-}
-
-DataBuffer DataBufferRegister(uint8_t *databuffer, size_t datalength)
-{
-    DataBuffer destbuffer;
-    memset(&destbuffer, 0x00, sizeof(DataBuffer));
-    BufferRegister(&(destbuffer.ptr), databuffer, datalength);
-    destbuffer.size = datalength;
-    return destbuffer;
-}
-
-void DataBufferDestory(DataBuffer databuffer)
-{
-    if (databuffer.ptr)
-    {
-        BufferDestory(databuffer.ptr);
-    }
-    databuffer.size = 0;
-}
-// char *StringTimeutc()
+// void *SkeletonInit(void **dest, size_t destsize)
 // {
-//     char tmpstring[80];
-//     memset(tmpstring, 0x00, sizeof(tmpstring));
-//     UtcTime result;
-//     time_t rawtime;
-//     time(&rawtime);
-//     result = unix32_to_UTC(rawtime);
-//     sprintf(tmpstring, "%04d-%02d-%02dT%02d:%02d:%02dZ", result.year, result.month, result.day,
-//             result.hour, result.minute, result.second); // 以年月日_时分秒的形式表示当前时间
-//     return StringCreate(tmpstring, strlen(tmpstring));
-// }
-// char *string_timestamp()
-// {
-
-//     char tmpstring[16] = {0};
-//     struct timeval tv;
-//     gettimeofday(&tv, NULL);
-//     // long result = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-//     // printf("second:%ld\n", tv.tv_sec); // 秒
-//     // printf("millisecond:%ld\n", tv.tv_sec * 1000 + tv.tv_usec / 1000); // 毫秒
-//     // printf("microsecond:%ld\n", tv.tv_sec * 1000000 + tv.tv_usec); // 微秒
-//     sprintf(tmpstring, "%ld", tv.tv_sec);
-//     return string_create(tmpstring, strlen(tmpstring));
-// }
-
-// char *string_nonce(size_t bits)
-// {
-//     char *deststring = NULL;
-//     if (bits >= 2)
+//     if ((*dest) = global_hooks.allocate(destsize))
 //     {
-//         char tmpstring[bits];
-//         bzero(tmpstring, sizeof(char) * bits);
-//         int i, j;
-//         unsigned char str[2 + 1] = {0};
-//         const char *hex_digits16 = "0123456789ABCDEF";
-//         const char *hex_digits8 = "01234567";
-//         const char *hex_digits4 = "0123";
-//         const char *hex_digits2 = "01";
-//         srand(time(NULL));
-
-//         for (j = 0; j < bits / 2; j++)
+//         if (memset((*dest), 0x00, destsize))
 //         {
-//             str[1] = hex_digits16[rand() % 16];
-//             str[0] = hex_digits4[rand() % 4];
-//             strcat(tmpstring, str);
+//             return (*dest);
 //         }
-//         deststring = StringCreate(tmpstring, strlen(tmpstring));
 //     }
-
-//     return deststring;
+//     return (*dest);
 // }
+
+void SkeletonDeallocate(void *dest)
+{
+    if (dest)
+    {
+        free(dest);
+    }
+}
+String *pStringInit(String **deststring, char *valuestring, size_t valuelength)
+{
+    String *dest = NULL;
+    if ((dest) = SkeletonAllocate((void **)deststring, sizeof(String)))
+    {
+        dest->valuestring = NULL;
+        dest->valuelength = 0;
+        if (valuelength >= 0)
+        {
+            if ((dest->valuestring = global_hooks.allocate(valuelength + 1)))
+            {
+                memset(dest->valuestring, 0x00, valuelength + 1);
+                memcpy(dest->valuestring, valuestring, valuelength);
+                dest->valuelength = valuelength;
+                return dest;
+            }
+        }
+        return dest;
+    }
+    return NULL;
+}
+void pStringFree(String *dest)
+{
+    if (dest)
+    {
+        if (dest->valuestring != NULL)
+        {
+            global_hooks.deallocate(dest->valuestring);
+            dest->valuestring = NULL;
+        }
+        SkeletonDeallocate(dest);
+    }
+}
+uint8_t *StringInit(String *deststring, char *valuestring, size_t valuelength)
+{
+    deststring->valuelength = 0;
+    deststring->valuestring = NULL;
+    if (valuestring && valuelength > 0)
+    {
+        if ((deststring->valuestring = global_hooks.allocate(valuelength + 1)))
+        {
+            memset(deststring->valuestring, 0x00, valuelength + 1);
+            memcpy(deststring->valuestring, valuestring, valuelength);
+            deststring->valuelength = valuelength;
+            return deststring->valuestring;
+        }
+    }
+    return NULL;
+}
+uint8_t * StringGetting(String deststring){
+    return deststring.valuestring;
+}
+
+void StringDeallocate(String deststring)
+{
+    if (deststring.valuestring)
+        global_hooks.deallocate(deststring.valuestring);
+    deststring.valuelength = 0;
+    deststring.valuestring = NULL;
+}
+uint8_t *BufferAllocate(uint8_t **dest, size_t destsize)
+{
+
+    if ((*dest) = global_hooks.allocate(destsize))
+    {
+
+        if (memset((*dest), 0x00, destsize))
+        {
+            return (*dest);
+        }
+    }
+    return (*dest);
+}
+
+void BufferDeallocate(uint8_t *dest)
+{
+    if (dest)
+    {
+        free(dest);
+    }
+}
+char *BufferInit(char **dest, char *datastring, size_t datalength)
+{
+    if ((*dest) = global_hooks.allocate(datalength + 1))
+    {
+        memset((*dest), 0x00, datalength + 1);
+        memcpy((*dest), datastring, datalength);
+        return (*dest);
+    }
+    return NULL;
+}
+
+void BufferFree(char *dest)
+{
+    if (dest)
+    {
+        global_hooks.deallocate(dest);
+    }
+}
+
+char *BufferFormat(char **__dest, size_t fmtsize, char *format, ...)
+{
+    va_list args;
+    va_start(args, format);
+    char buffer[fmtsize];
+    memset(buffer,0x00,fmtsize);
+    int retsize = vsprintf(buffer, format, args);
+    BufferInit(__dest,buffer,retsize);
+    va_end(args);
+    return (*__dest);
+}
+
+char *BufferCatenate(char *__restrict__ __dest, size_t fmtsize,char *format, ...)
+{
+    va_list args;
+    va_start(args, format);
+    char buffer[fmtsize];
+    memset(buffer,0x00,fmtsize);
+    int retsize = vsprintf(buffer, format, args);
+    strcat(__dest,buffer);
+    va_end(args);
+    return __dest;
+}
+
+uint8_t *IntegerInit(uint8_t **skeleton, long value)
+{
+    return (*skeleton = (uint8_t *)value);
+}
+
+uint8_t *BooleanInit(uint8_t **skeleton, Boolean value)
+{
+    return (*skeleton = (uint8_t *)value);
+}
+
+

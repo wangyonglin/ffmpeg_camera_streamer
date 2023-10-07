@@ -4,7 +4,7 @@
 #include <Blackliner/Blackliner.h>
 #include <Blackliner/Logger.h>
 #include <Blackliner/Configuring.h>
-
+#include <HTTPSClient/HTTPSRequest.h>
 // const char *filter_descr = "scale=78:24,transpose=cclock";
 //  const char *filter_descr = "lutyuv='u=128:v=128'";
 // const char *filter_descr = "boxblur";
@@ -50,11 +50,21 @@ int main(int argc, char *argv[])
 
   logger *log = NULL;
   logger_init(&log, config);
+  HTTPSResponse *response = NULL;
+  HTTPSRequest *request = HTTPSRequestInit(config, log);
+  if (request)
+  {
+    HTTPSRequesting(request, "https://www.baidu.com", NULL, &response);
 
-  logger_info(log, "wangyonglin%s",log->rule_error.valuestring);
+    logger_info(log, "wangyonglin%s", response->context);
+    HTTPSResponseDeallocate(response);
+    HTTPSRequestDeallocate(request);
+  }
+
+  logger_info(log, "wangyonglin%s", log->rule_error.valuestring);
 
   logger_destroy(log);
-  ConfiguringDestroy(config);
+  ConfiguringDeallocate(config);
 
   return 0;
 }

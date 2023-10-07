@@ -50,6 +50,9 @@
         "configuration.h": "c",
         "configure.h": "c",
         "kvtailq.h": "c",
-        "configuring.h": "c"
+        "configuring.h": "c",
+        "httpsclient.h": "c",
+        "httpsrequest.h": "c",
+        "blackliner.h": "c"
     }
 }

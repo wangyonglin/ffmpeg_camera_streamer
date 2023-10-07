@@ -64,39 +64,19 @@ typedef enum
     SKELETON_TYPE_INVALID
 } Skeletons;
 
-typedef enum __class_type_t
-{
-    class_string_type,
-    class_boolean_type,
-    class_integer_type
-} class_type_t;
 
 typedef struct String
 {
     size_t valuelength;
     uint8_t *valuestring;
-} String, *PString;
+} String, *PString,DataString;
 #define STRING_NULL \
     (String) { 0, NULL }
-
-void *SkeletonAllocate(void **dest, size_t destsize);
-void SkeletonDeallocate(void *dest);
-
-String *pStringInit(String **deststring, char *valuestring, size_t valuelength);
-void pStringFree(String *dest);
-
-uint8_t *StringInit(String *deststring, char *valuestring, size_t valuelength);
-uint8_t * StringGetting(String deststring);
-void StringFree(String deststring);
-
-void *SkeletonInit(void **dest, size_t destsize);
-void SkeletonFree(void *dest);
-
-char *BufferInit(char **dest, char *datastring, size_t datalength);
-void BufferFree(char *dest);
-char *BufferFormat(char **__dest, size_t fmtsize, char *format, ...);
-char *BufferCatenate(char *__restrict__ __dest, size_t fmtsize, char *format, ...);
-
-uint8_t *IntegerInit(uint8_t **skeleton, long value);
-uint8_t *BooleanInit(uint8_t **skeleton, Boolean value);
+    
+typedef int Exception;
+#define OkException ((Exception)(0))
+#define NullPointerException ((Exception)(-1))
+#define RuntimeExceion ((Exception)(-2))
+#define ArithmeticException ((Exception)(-3))
+#define IllegalArgumentException ((Exception)(-4))
 #endif
